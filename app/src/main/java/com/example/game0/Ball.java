@@ -14,6 +14,10 @@ public class Ball {
     public boolean isGoingRight = false;
     int x, y, width, height, ballCounter = 0;
     Bitmap ball1, ball2;
+    // speed of ball
+    private float speedX, speedY;
+
+
 
     Ball(int screenX, Resources res) {
 
@@ -39,9 +43,10 @@ public class Ball {
         //centering ball in the center of the screen
         x = screenX / 2;
         y = 64;
-        // y = (int) (64 * screenRatioX);   //compatability
+        // y = (int) (64 * screenRatioX);   //compatabilit
 
-
+        speedX = 0;
+        speedY = 0;
 
     }
 
@@ -60,5 +65,7 @@ public class Ball {
     Rect getCollisionShape () {
         return new Rect(x, y, x + width, y + height);
     }
+
+
 
 }

@@ -10,7 +10,10 @@ import android.view.WindowManager;
 public class GameActivity extends AppCompatActivity {
 
     private GameView gameView;
-    public boolean isGameOver = false;
+    // 2 variables to track the time the user has been playing
+    // elaspedTime -- elasped time in seconds
+    public long elaspedTime;
+    private long startTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,30 +27,41 @@ public class GameActivity extends AppCompatActivity {
 
         setContentView(gameView);
 
+        // initialize time values
+        elaspedTime = 0;
+        startTime = System.currentTimeMillis();
+        /*
         if (isGameOver) {
+
+            // Increment elaspedTime one fil
+            elaspedTime += (System.currentTimeMillis() - startTime) / 1000;
             startActivity(new Intent(GameActivity.this, GameOver.class));
 
         }
+        */
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         gameView.pause();
+        // increment elapse time
+        elaspedTime += (System.currentTimeMillis() - startTime) / 1000;
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         gameView.resume();
+        startTime = System.currentTimeMillis();
+    }
 
-    }
-/*
-    protected void onGameOver() {
-        if (isGameOver) {
-            Intent gameOverIntent = new Intent(this, GameOver.class);
+    protected void LaunchGameOver() {
+            // increment elasped time for game over screen
+            elaspedTime += (System.currentTimeMillis() - startTime) / 1000;
+            Intent gameOverIntent = new Intent(GameActivity.this, GameOver.class);
             startActivity(gameOverIntent);
-        }
     }
- */
+
 }
