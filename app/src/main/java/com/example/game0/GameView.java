@@ -14,6 +14,7 @@ import java.util.Random;
 public class GameView extends SurfaceView implements Runnable {
 
     private Thread thread;
+    private int coolbeans;
     private boolean isPlaying;      // keeps track whether game is being played or not
     private int screenX, screenY, score;
     public boolean isGameOver = false;
